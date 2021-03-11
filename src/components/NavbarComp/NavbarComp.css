@@ -1,0 +1,16 @@
+.navbar-font {
+    font-family: "Poppins", sans-serif;
+    font-size: larger;
+}
+
+.nav-container {
+    margin-left: auto;
+}
+
+.navbar-border {
+    border-bottom: 2px solid white;
+}
+
+.navbar-toggle {
+    border-width: 2px;
+}

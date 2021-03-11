@@ -1,0 +1,24 @@
+.symbol-container {
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+}
+
+.label-text-container {
+    font-family: "Open Sans", sans-serif;
+    font-size: larger;
+    margin-left: 10px;
+    color: white;
+}
+
+.legend-row-container {
+    margin-left: 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.legend-container {
+    display: inline-block;
+}

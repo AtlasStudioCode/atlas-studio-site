@@ -1,0 +1,65 @@
+.header-col {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.header-name {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: xx-large;
+    text-align: center;
+    line-height: 1;
+}
+
+.position-text {
+    font-size: large;
+}
+
+.body-row {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-col {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-container {
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-img {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border: 7.5px solid white;
+    border-radius: 100%;
+}
+
+.desc-text {
+    margin: 10px auto 0 auto;
+    text-align: center;
+    color: white;
+    font-size: small;
+}
+
+.button-col {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.resume-button {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    border: 3px solid white;
+}
