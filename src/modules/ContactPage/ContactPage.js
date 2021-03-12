@@ -12,10 +12,6 @@ import linkedin_img from '../../data/linkedin.png';
 import resume from '../../data/resume.pdf';
 
 function ContactPage() {
-    function handleClick() {
-        window.open(resume);
-    }
-
     return (
         <div className="container-fluid">
             <div className="row">
@@ -65,7 +61,7 @@ function ContactPage() {
                         size="lg"
                         variant="light"
                         className="resume-button text-uppercase"
-                        onClick={handleClick} >
+                        href={resume} >
                         View Resume
                     </Button>
                 </div>

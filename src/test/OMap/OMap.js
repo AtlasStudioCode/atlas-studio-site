@@ -66,7 +66,7 @@ function OMap({ mapYear }) {
         return colorRamp[index];
     }
 
-    React.useEffect( () => {
+    useEffect( () => {
         var osmTile = new Tile({
             source: new OSM()
         });
@@ -75,8 +75,8 @@ function OMap({ mapYear }) {
 
         let stateLayer = new Vector({
             source: new VectorSource({
-                format: new GeoJSON(),
-                url: stateGeoJSON
+                url: stateGeoJSON,
+                format: new GeoJSON()
             }),
             style: function(feature) {
                 return new Style({
