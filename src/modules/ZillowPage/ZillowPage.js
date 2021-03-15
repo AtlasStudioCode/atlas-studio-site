@@ -1,13 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Collapse } from 'react-bootstrap';
 
-import MapPage from '../../components/MapPage/MapPage';
 import './ZillowPage.css';
 
+import OMap from './OMap/OMap';
+import MapControls from './MapControls/MapControls';
+import Legend from './Legend/Legend';
+
 function ZillowPage() {
+    const [name, setName] = useState();
+    const [price, setPrice] = useState();
+    const [year, setYear] = useState(1996);
+    const [open, setOpen] = useState(false);
+
     return (
-        <MapPage
-            src="https://atlasstudiogis.maps.arcgis.com/apps/webappviewer/index.html?id=6d667b81e59742be9cda1f6f8cd07876"
-            title="Zillow Home Value Index Map" />
+        <div className="frameContainer">
+            <div className="mapContainer">
+                <OMap
+                    name={name}
+                    setName={setName}
+                    price={price}
+                    setPrice={setPrice}
+                    year={year} />
+            </div>
+            <div className="buttonContainer">
+                <Button
+                    className="legendButton"
+                    style={{ display: !open ? 'block' : 'none' }}
+                    variant="dark"
+                    onClick={() => {
+                        setOpen(!open);
+                    }}>
+                    Legend
+                </Button>
+            </div>
+            <Collapse in={open}>
+                <div className="legendContainer">
+                    <Legend />
+                    <Button
+                        className="legendButton"
+                        variant="dark"
+                        onClick={() => {
+                            setOpen(!open);
+                        }}>
+                        Close
+                    </Button>
+                </div>
+            </Collapse>
+            <div className="sliderContainer">
+                <MapControls
+                    year={year}
+                    setYear={setYear} />
+            </div>
+            <div>
+                <h1 className='yearLabel'>{year}</h1>
+            </div>
+        </div>
     );
 }
 

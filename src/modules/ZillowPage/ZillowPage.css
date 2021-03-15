@@ -1,0 +1,45 @@
+.frameContainer {
+    width: 100%;
+    height: calc(100vh - 63px);
+    position: relative;
+}
+
+.mapContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.legendButton {
+    border: 1px solid white;
+}
+
+.legendContainer {
+    position: absolute;
+    padding: 20px;
+    top: 1%;
+    left: 1%;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 2%;
+}
+
+.sliderContainer {
+    position: absolute;
+    width: 80%;
+    bottom: 4%;
+    left: 10%;
+}
+
+.yearLabel {
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 0.5%;
+    right: 1%;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import IconRow from '../../components/IconRow/IconRow';
+import IconRow from './IconRow/IconRow';
 import { Button } from 'react-bootstrap';
 
 import './ContactPage.css';

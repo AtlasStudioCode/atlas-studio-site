@@ -3,7 +3,7 @@ import { Card, CardDeck } from 'react-bootstrap';
 
 import './VideoPage.css';
 
-import EmbedsPage from '../../components/EmbedsPage/EmbedsPage';
+import EmbedsPage from './EmbedsPage/EmbedsPage';
 
 function VideoPage() {
     return (

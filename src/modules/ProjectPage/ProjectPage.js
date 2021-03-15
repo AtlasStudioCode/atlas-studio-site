@@ -3,7 +3,7 @@ import { CardDeck } from 'react-bootstrap';
 
 import './ProjectPage.css';
 
-import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import ProjectCard from './ProjectCard/ProjectCard';
 
 import house_img from '../../data/house.png';
 import native_img from '../../data/natives.png';

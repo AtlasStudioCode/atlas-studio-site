@@ -10,8 +10,7 @@ import VideoPage from '../VideoPage/VideoPage';
 import ContactPage from '../ContactPage/ContactPage';
 import WildfirePage from '../WildfirePage/WildfirePage';
 import TribalPage from '../TribalPage/TribalPage';
-import ZillowPage from '../../test/ZillowPage/ZillowPage';
-import TestPage from '../TestPage/TestPage';
+import ZillowPage from '../ZillowPage/ZillowPage';
 
 function App() {
     return (
@@ -35,9 +34,6 @@ function App() {
                 </Route>
                 <Route path="/zillow-home-value-index">
                     <ZillowPage />
-                </Route>
-                <Route path="/test">
-                    <TestPage />
                 </Route>
                 <Route path="/">
                     <Redirect to='/projects' />
