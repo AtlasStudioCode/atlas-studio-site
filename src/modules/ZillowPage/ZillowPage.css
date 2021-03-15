@@ -1,8 +1,10 @@
 .frameContainer {
     width: 100%;
-    height: calc(100vh - 63px);
+    height: calc(100vh - 107px);
     position: relative;
 }
+
+
 
 .mapContainer {
     position: absolute;
@@ -40,6 +42,6 @@
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 0.5%;
-    right: 1%;
+    top: 0;
+    right: 2%;
 }
