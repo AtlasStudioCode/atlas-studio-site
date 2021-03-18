@@ -6,6 +6,7 @@ import './ProjectPage.css';
 import ProjectCard from './ProjectCard/ProjectCard';
 
 import house_img from '../../data/house.png';
+import chaparral_img from '../../data/chaparral.png';
 import native_img from '../../data/natives.png';
 import wildfire_img from '../../data/wildfire.png';
 
@@ -18,6 +19,11 @@ function ProjectPage() {
                     title="Zillow Home Value Index Map"
                     text="The yearly average home values by state in the United States from 1996 to 2020."
                     src="/zillow-home-value-index" />
+                <ProjectCard
+                    image={chaparral_img}
+                    title="Chaparral Drone Imagery Map"
+                    text="High resolution drone imagery and land cover classification of a Chaparral hillside."
+                    src="/chaparral-drone-imagery" />
                 <ProjectCard
                     image={native_img}
                     title="California Native American Tribal Boundaries Map"

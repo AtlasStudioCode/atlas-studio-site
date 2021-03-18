@@ -11,6 +11,7 @@ import ContactPage from '../ContactPage/ContactPage';
 import WildfirePage from '../WildfirePage/WildfirePage';
 import TribalPage from '../TribalPage/TribalPage';
 import ZillowPage from '../ZillowPage/ZillowPage';
+import ChaparralPage from '../ChaparralPage/ChaparralPage';
 
 function App() {
     return (
@@ -34,6 +35,9 @@ function App() {
                 </Route>
                 <Route path="/zillow-home-value-index">
                     <ZillowPage />
+                </Route>
+                <Route path="/chaparral-drone-imagery">
+                    <ChaparralPage />
                 </Route>
                 <Route path="/">
                     <Redirect to='/projects' />

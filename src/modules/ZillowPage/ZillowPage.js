@@ -7,6 +7,11 @@ import OMap from './OMap/OMap';
 import MapControls from './MapControls/MapControls';
 import Legend from './Legend/Legend';
 
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
 function ZillowPage() {
     const [name, setName] = useState();
     const [price, setPrice] = useState();

@@ -26,6 +26,7 @@ function NavbarComp() {
                 <Nav className="nav-container" activeKey={routerPath}>
                     <NavDropdown title="Projects">
                         <NavDropdown.Item href="/zillow-home-value-index">Zillow Home Value Index</NavDropdown.Item>
+                        <NavDropdown.Item href="/chaparral-drone-imagery">Chaparral Drone Imagery</NavDropdown.Item>
                         <NavDropdown.Item href="/ca-native-american-tribal-boundaries">CA Native American Tribes</NavDropdown.Item>
                         <NavDropdown.Item href="/usa-wildfire-air-quality">USA Wildfire and Air Quality</NavDropdown.Item>
                         <NavDropdown.Divider />
