@@ -8,5 +8,10 @@
       "customAuth": false
     }
   },
-  "storage": {}
+  "storage": {
+    "s3atlasstudiocontent": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  }
 }
