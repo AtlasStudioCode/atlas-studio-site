@@ -6,6 +6,7 @@ import './NavbarComp.css';
 import logo from '../../data/logo.svg';
 
 function NavbarComp() {
+    // the navigation bar component displayed at the top of every page
     const routerPath = useLocation().pathname;
 
     return(

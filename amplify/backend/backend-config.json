@@ -1,0 +1,12 @@
+{
+  "api": {},
+  "auth": {
+    "atlasstudio9b4fcb7c": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {}
+}

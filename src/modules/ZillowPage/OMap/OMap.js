@@ -11,7 +11,7 @@ import { Overlay } from "ol";
 
 import './OMap.css';
 
-import stateGeoJSON from '../../../data/usa_states_zhvi.geojson';
+import stateGeom from '../../../data/usa_states_zhvi.geojson';
 
 function OMap({ name, setName, price, setPrice, year }) {
 
@@ -77,7 +77,7 @@ function OMap({ name, setName, price, setPrice, year }) {
 
         let iStateLayer = new Vector({
             source: new VectorSource({
-                url: stateGeoJSON,
+                url: stateGeom,
                 format: new GeoJSON()
             }),
             maxZoom: 7,

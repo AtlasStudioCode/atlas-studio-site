@@ -3,6 +3,7 @@ import React from 'react';
 import './MapPage.css';
 
 function MapPage({ src, title }) {
+    // container component for Esri web map applications
     return (
         <div className="frameContainer">
             <iframe
