@@ -10,13 +10,14 @@ import { Fill, Stroke, Style } from 'ol/style';
 import { Overlay } from "ol";
 
 import './OMap.css';
-
-import stateGeom from '../../../data/usa_states_zhvi.geojson';
+import stateGeom from '../../../data/zillow_states.geojson';
+import countyGeom from '../../../data/zillow_counties.geojson';
 
 function OMap({ name, setName, price, setPrice, year }) {
 
     const [map, setMap] = useState();
     const [stateLayer, setStateLayer] = useState();
+    const [countyLayer, setCountyLayer] = useState();
     const [overlay, setOverlay] = useState();
     const [selectFeature, setFeature] = useState();
     const mapRef = useRef();
@@ -75,12 +76,28 @@ function OMap({ name, setName, price, setPrice, year }) {
             source: new OSM()
         });
 
-        let iStateLayer = new Vector({
+        const iStateLayer = new Vector({
             source: new VectorSource({
                 url: stateGeom,
                 format: new GeoJSON()
             }),
-            maxZoom: 7,
+            maxZoom: 6,
+            style: (feature) => new Style({
+                fill: new Fill({
+                    color: getColor(feature, `Y${year}`)
+                }),
+                stroke: new Stroke({
+                    color: "black"
+                })
+            })
+        });
+
+        const iCountyLayer = new Vector({
+            source: new VectorSource({
+                url: countyGeom,
+                format: new GeoJSON()
+            }),
+            minZoom: 6,
             style: (feature) => new Style({
                 fill: new Fill({
                     color: getColor(feature, `Y${year}`)
@@ -97,7 +114,7 @@ function OMap({ name, setName, price, setPrice, year }) {
 
         const iMap = new Map({
             target: mapRef.current,
-            layers: [ osmTile, iStateLayer ],
+            layers: [ osmTile, iStateLayer, iCountyLayer ],
             view: new View({
                 center: fromLonLat([-97, 38]),
                 zoom: 3
@@ -108,6 +125,7 @@ function OMap({ name, setName, price, setPrice, year }) {
 
         setMap(iMap);
         setStateLayer(iStateLayer);
+        setCountyLayer(iCountyLayer);
         setOverlay(iOverlay);
     }, []);
 
@@ -120,7 +138,11 @@ function OMap({ name, setName, price, setPrice, year }) {
     }
 
     function setContent(featureObject) {
-        setName(featureObject.get('RegionName'));
+        let tempName = featureObject.get('RegionName');
+        if (!tempName) {
+            tempName = featureObject.get('county_name');
+        }
+        setName(tempName);
         setPrice(formatPrice(featureObject.get(`Y${year}`)));
     }
 
@@ -146,6 +168,17 @@ function OMap({ name, setName, price, setPrice, year }) {
     useEffect( () => {
         if (stateLayer) {
             stateLayer.setStyle((feature) => new Style({
+                fill: new Fill({
+                    color: getColor(feature, `Y${year}`)
+                }),
+                stroke: new Stroke({
+                    color: "black"
+                })
+            }));
+        }
+
+        if (countyLayer) {
+            countyLayer.setStyle((feature) => new Style({
                 fill: new Fill({
                     color: getColor(feature, `Y${year}`)
                 }),
