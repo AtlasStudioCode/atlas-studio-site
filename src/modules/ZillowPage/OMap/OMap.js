@@ -13,13 +13,15 @@ import './OMap.css';
 import stateGeom from '../../../data/zillow_states.geojson';
 import countyGeom from '../../../data/zillow_counties.geojson';
 
-function OMap({ name, setName, price, setPrice, year }) {
+function OMap({ name, setName, stateCode, setStateCode, price, setPrice, year }) {
 
     const [map, setMap] = useState();
     const [stateLayer, setStateLayer] = useState();
     const [countyLayer, setCountyLayer] = useState();
     const [overlay, setOverlay] = useState();
     const [selectFeature, setFeature] = useState();
+    const [selectLayer, setLayer] = useState();
+    const [zoom, setZoom] = useState();
     const mapRef = useRef();
     const overlayRef = useRef();
 
@@ -92,6 +94,20 @@ function OMap({ name, setName, price, setPrice, year }) {
             })
         });
 
+        const iBoundaryLayer = new Vector({
+            source: new VectorSource({
+                url: stateGeom,
+                format: new GeoJSON()
+            }),
+            minZoom: 6,
+            style: (feature) => new Style({
+                stroke: new Stroke({
+                    color: "black",
+                    width: 2
+                })
+            })
+        });
+
         const iCountyLayer = new Vector({
             source: new VectorSource({
                 url: countyGeom,
@@ -114,7 +130,7 @@ function OMap({ name, setName, price, setPrice, year }) {
 
         const iMap = new Map({
             target: mapRef.current,
-            layers: [ osmTile, iStateLayer, iCountyLayer ],
+            layers: [ osmTile, iStateLayer, iCountyLayer, iBoundaryLayer ],
             view: new View({
                 center: fromLonLat([-97, 38]),
                 zoom: 3
@@ -127,6 +143,7 @@ function OMap({ name, setName, price, setPrice, year }) {
         setStateLayer(iStateLayer);
         setCountyLayer(iCountyLayer);
         setOverlay(iOverlay);
+        setZoom(3);
     }, []);
 
     function formatPrice(rawPrice) {
@@ -137,12 +154,13 @@ function OMap({ name, setName, price, setPrice, year }) {
         }
     }
 
-    function setContent(featureObject) {
-        let tempName = featureObject.get('RegionName');
-        if (!tempName) {
-            tempName = featureObject.get('county_name');
+    function setContent(featureObject, layerObject) {
+        if (layerObject === countyLayer) {
+            setName(featureObject.get('county_name'));
+            setStateCode(featureObject.get('state_code'));
+        } else {
+            setName(featureObject.get('RegionName'));
         }
-        setName(tempName);
         setPrice(formatPrice(featureObject.get(`Y${year}`)));
     }
 
@@ -154,14 +172,26 @@ function OMap({ name, setName, price, setPrice, year }) {
                     e.pixel,
                     (feature, layer) => feature
                 );
-                if (feature) {
+                let layer = map.forEachFeatureAtPixel(
+                    e.pixel,
+                    (feature, layer) => layer
+                );
+                if (feature && layer) {
                     setFeature(feature);
-                    setContent(feature);
+                    setLayer(layer);
+                    setContent(feature, layer);
                     overlay.setPosition(coord);
                 } else {
                     overlay.setPosition();
                 }
             });
+
+            map.on('moveend', e => {
+                let newZoom = map.getView().getZoom();
+                if (zoom != newZoom) {
+                    setZoom(newZoom);
+                }
+            })
         }
     });
 
@@ -188,18 +218,23 @@ function OMap({ name, setName, price, setPrice, year }) {
             }));
         }
 
-        if (selectFeature) {
-            setContent(selectFeature);
+        if (selectFeature && selectLayer) {
+            setContent(selectFeature, selectLayer);
         }
     }, [year]);
+
+    let content;
+    if (selectLayer === countyLayer) {
+        content = <div className='content'>{name}, {stateCode}<br/>{price}</div>;
+    } else {
+        content = <div className='content'>{name}<br/>{price}</div>
+    }
 
     return (
         <div>
             <div ref={mapRef} className='mapContainer' />
             <div ref={overlayRef} className='overlay'>
-                <div className='content'>
-                    {name}<br/>{price}
-                </div>
+                {content}
             </div>
         </div>
     );

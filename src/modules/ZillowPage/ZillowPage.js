@@ -14,6 +14,7 @@ window.addEventListener('resize', () => {
 
 function ZillowPage() {
     const [name, setName] = useState();
+    const [stateCode, setStateCode] = useState();
     const [price, setPrice] = useState();
     const [year, setYear] = useState(1996);
     const [open, setOpen] = useState(false);
@@ -24,6 +25,8 @@ function ZillowPage() {
                 <OMap
                     name={name}
                     setName={setName}
+                    stateCode={stateCode}
+                    setStateCode={setStateCode}
                     price={price}
                     setPrice={setPrice}
                     year={year} />
