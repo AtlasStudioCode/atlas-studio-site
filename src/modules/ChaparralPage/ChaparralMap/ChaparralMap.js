@@ -9,8 +9,9 @@ import { fromLonLat } from "ol/proj";
 import './ChaparralMap.css';
 import standardRaster from '../../../data/raster/standard.png';
 import segmentRaster from '../../../data/raster/segment.png';
+import classRaster from '../../../data/raster/class.png';
 
-function ChaparralMap() {
+function ChaparralMap({ rasterId }) {
 
     const [map, setMap] = useState();
     const [standardLayer, setStandardLayer] = useState();
@@ -46,11 +47,20 @@ function ChaparralMap() {
             })
         });
 
+        const iClassLayer = new ImageLayer({
+            source: new ImageStatic({
+                url: classRaster,
+                imageExtent: extent
+            })
+        });
+
         const iMap = new Map({
             target: mapRef.current,
             layers: [
                 satelliteTile,
-                iStandardLayer
+                iStandardLayer,
+                iSegmentLayer,
+                iClassLayer
             ],
             view: new View({
                 center: fromLonLat([-117.67832, 33.512515]),
@@ -59,10 +69,37 @@ function ChaparralMap() {
             controls: []
         });
 
+        iSegmentLayer.setVisible(false);
+        iClassLayer.setVisible(false);
+
         setMap(iMap);
         setStandardLayer(iStandardLayer);
         setSegmentLayer(iSegmentLayer);
+        setClassLayer(iClassLayer);
+
     }, []);
+
+    useEffect( () => {
+        if (standardLayer && segmentLayer && classLayer) {
+            if (rasterId === 0) {
+                standardLayer.setVisible(false);
+                segmentLayer.setVisible(false);
+                classLayer.setVisible(false);
+            } else if (rasterId === 1) {
+                standardLayer.setVisible(true);
+                segmentLayer.setVisible(false);
+                classLayer.setVisible(false);
+            } else if (rasterId === 2) {
+                standardLayer.setVisible(false);
+                segmentLayer.setVisible(true);
+                classLayer.setVisible(false);
+            } else if (rasterId === 3) {
+                standardLayer.setVisible(false);
+                segmentLayer.setVisible(false);
+                classLayer.setVisible(true);
+            }
+        }
+    }, [rasterId]);
 
     return (
         <div ref={mapRef} className="map" />

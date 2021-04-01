@@ -1,0 +1,51 @@
+#rasterContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    padding: 5px 0 10px 0;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+#rasterLabel {
+    color: white;
+    margin-right: 10px;
+    font-size: x-large;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+}
+
+#rasterSelect {
+    width: 50%;
+}
+
+#classLegend {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    margin-top: 10px;
+    padding: 10px 0 0 0;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.legendItem {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    width: 175px;
+}
+
+.legendColor {
+    border: 1px solid black;
+    margin-right: 10px;
+    width: 25px;
+}
+
+.legendLabel {
+    color: white;
+}
